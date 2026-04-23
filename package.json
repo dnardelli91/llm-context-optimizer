@@ -1,0 +1,13 @@
+{
+  "name": "llm-context-optimizer",
+  "version": "1.0.0",
+  "description": "CLI tool to detect ghost tokens and optimize LLM chat context",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/index.js demo/sample-chat.json"
+  },
+  "keywords": ["llm", "context", "tokens", "optimization", "cli"],
+  "author": "dnardelli91",
+  "license": "MIT"
+}

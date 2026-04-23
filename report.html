@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Context Optimizer — Report</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0a0a0f; color: #e0e0e0; font-family: 'Courier New', monospace; padding: 20px; line-height: 1.5; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { color: #00ff88; font-size: 24px; margin-bottom: 5px; }
+    h2 { color: #00ff88; font-size: 16px; margin: 20px 0 10px; }
+    .subtitle { color: #888; font-size: 12px; margin-bottom: 20px; }
+    .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
+    .meta-box { background: #141420; border: 1px solid #333; border-radius: 4px; padding: 12px; }
+    .meta-box .label { color: #888; font-size: 11px; text-transform: uppercase; }
+    .meta-box .value { font-size: 20px; font-weight: bold; }
+    .severity { color: #00ff88; }
+    .savings-box { background: #0d2818; border: 1px solid #00ff88; border-radius: 4px; padding: 15px; margin: 20px 0; }
+    .savings-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 10px; }
+    .savings-item { text-align: center; }
+    .savings-item .label { color: #888; font-size: 10px; text-transform: uppercase; }
+    .savings-item .value { font-size: 18px; color: #00ff88; }
+    .legend { display: flex; gap: 20px; margin: 15px 0; font-size: 12px; }
+    .legend span { display: flex; align-items: center; gap: 5px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; }
+    th { background: #1a1a2e; color: #00ff88; padding: 8px; text-align: left; font-size: 11px; position: sticky; top: 0; }
+    td { padding: 6px 8px; border-bottom: 1px solid #222; vertical-align: top; }
+    tr.flagged { background: #1a1500; }
+    .idx { color: #555; width: 30px; }
+    .role { width: 60px; color: #888; }
+    .tokens, .ghost, .pct { text-align: right; width: 60px; }
+    .content { max-width: 300px; word-break: break-word; color: #ccc; }
+    .compressed { background: #0a1f10; color: #00ff88; }
+    .saved { font-size: 10px; color: #00ff88; opacity: 0.8; }
+    .flag { text-align: center; }
+    .footer { margin-top: 30px; padding-top: 15px; border-top: 1px solid #333; color: #555; font-size: 11px; }
+    @media (max-width: 768px) {
+      .meta-grid, .savings-grid { grid-template-columns: repeat(2, 1fr); }
+      table { font-size: 10px; }
+      .content { max-width: 150px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚙️ LLM Context Optimizer</h1>
+    <p class="subtitle">Ghost Token Analysis Report — Generated 2026-04-23T10:13:46.970Z</p>
+    
+    <div class="meta-grid">
+      <div class="meta-box">
+        <div class="label">Total Tokens</div>
+        <div class="value">338</div>
+      </div>
+      <div class="meta-box">
+        <div class="label">Ghost Tokens</div>
+        <div class="value severity">2 (0.6%)</div>
+      </div>
+      <div class="meta-box">
+        <div class="label">Severity</div>
+        <div class="value severity">OK</div>
+      </div>
+      <div class="meta-box">
+        <div class="label">Flagged Messages</div>
+        <div class="value">0/9</div>
+      </div>
+    </div>
+
+    
+    <div class="savings-box">
+      <h2>💰 Compression Savings</h2>
+      <div class="savings-grid">
+        <div class="savings-item">
+          <span class="label">Tokens Saved</span>
+          <span class="value">0</span>
+        </div>
+        <div class="savings-item">
+          <span class="label">Cost Saved</span>
+          <span class="value">$0.0000</span>
+        </div>
+        <div class="savings-item">
+          <span class="label">Reduction</span>
+          <span class="value">0.0%</span>
+        </div>
+        <div class="savings-item">
+          <span class="label">Rate</span>
+          <span class="value">$5/1M tokens</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>📊 Per-Message Breakdown</h2>
+    <div class="legend">
+      <span><span class="dot" style="background:#00ff88"></span> ✓ Normal</span>
+      <span><span class="dot" style="background:#ffcc00"></span> ⚠ Flagged (ghost >20%)</span>
+    </div>
+    
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Role</th><th>Tokens</th><th>Ghost</th><th>Ghost%</th><th>Content</th><th>Compressed</th><th>Flag</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+    <tr class="">
+      <td class="idx">0</td>
+      <td class="role">system</td>
+      <td class="tokens">35</td>
+      <td class="ghost">0</td>
+      <td class="pct">0.0%</td>
+      <td class="content">You are a helpful assistant. You are helping the user with their coding tasks. Always respond with clear and concise code examples.</td>
+      <td>—</td>
+      <td class="flag">✓</td>
+    </tr>
+    <tr class="">
+      <td class="idx">1</td>
+      <td class="role">user</td>
+      <td class="tokens">17</td>
+      <td class="ghost">0</td>
+      <td class="pct">0.0%</td>
+      <td class="content">Can you explain how to parse JSON in Python?</td>
+      <td>—</td>
+      <td class="flag">✓</td>
+    </tr>
+    <tr class="">
+      <td class="idx">2</td>
+      <td class="role">assistant</td>
+      <td class="tokens">94</td>
+      <td class="ghost">0</td>
+      <td class="pct">0.0%</td>
+      <td class="content">You are a helpful assistant. Here's how you parse JSON in Python using the built-in `json` module:
+
+```python
+import json
+
+data = json.loads('{&quot;key&quot;: &quot;value&quot;}')
+print(data['key'])  # Output: value
+```
+
+This is a common pattern for handling API responses and configuration files. Let me think about this more carefully. The json module is part of Python's standard library and provides loads() for strings and load() for files. You should always wrap in try-except for production code.</td>
+      <td>—</td>
+      <td class="flag">✓</td>
+    </tr>
+    <tr class="">
+      <td class="idx">3</td>
+      <td class="role">user</td>
+      <td class="tokens">14</td>
+      <td class="ghost">0</td>
+      <td class="pct">0.0%</td>
+      <td class="content">Show me with a file example too.</td>
+      <td>—</td>
+      <td class="flag">✓</td>
+    </tr>
+    <tr class="">
+      <td class="idx">4</td>
+      <td class="role">assistant</td>
+      <td class="tokens">52</td>
+      <td class="ghost">0</td>
+      <td class="pct">0.0%</td>
+      <td class="content">You are a helpful assistant. Here's the file example:
+
+```python
+import json
+
+# Reading
+with open('config.json', 'r') as f:
+    data = json.load(f)
+
+# Writing
+with open('output.json', 'w') as f:
+    json.dump(data, f, indent=2)
+```
+
+Sure, let me also mention error handling. You should always wrap in try-except. Actually, let me provide a complete example with error handling too.</td>
+      <td>—</td>
+      <td class="flag">✓</td>
+    </tr>
+    <tr class="">
+      <td class="idx">5</td>
+      <td class="role">user</td>
+      <td class="tokens">14</td>
+      <td class="ghost">0</td>
+      <td class="pct">0.0%</td>
+      <td class="content">What's the difference between json.load and json.loads?</td>
+      <td>—</td>
+      <td class="flag">✓</td>
+    </tr>
+    <tr class="">
+      <td class="idx">6</td>
+      <td class="role">assistant</td>
+      <td class="tokens">42</td>
+      <td class="ghost">0</td>
+      <td class="pct">0.0%</td>
+      <td class="content">You are a helpful assistant.
+
+- `json.load()` reads from a **file object**
+- `json.loads()` reads from a **string**
+
+That's the main difference. They're otherwise identical in functionality.</td>
+      <td>—</td>
+      <td class="flag">✓</td>
+    </tr>
+    <tr class="">
+      <td class="idx">7</td>
+      <td class="role">user</td>
+      <td class="tokens">17</td>
+      <td class="ghost">0</td>
+      <td class="pct">0.0%</td>
+      <td class="content">Can you show me how to handle parse errors?</td>
+      <td>—</td>
+      <td class="flag">✓</td>
+    </tr>
+    <tr class="">
+      <td class="idx">8</td>
+      <td class="role">assistant</td>
+      <td class="tokens">53</td>
+      <td class="ghost"><span style="color:#ffcc00">2</span></td>
+      <td class="pct">3.8%</td>
+      <td class="content">You are a helpful assistant. Here's error handling:
+
+```python
+import json
+
+try:
+    with open('data.json', 'r') as f:
+        data = json.load(f)
+except json.JSONDecodeError as e:
+    print(f'Parse error: {e}')
+except FileNotFoundError:
+    print('File not found')
+```
+
+Error handling is important for production code. Make sure to catch JSONDecodeError specifically. Let me also mention that you can use json.decoder.JSONDecodeError for older Python versions.</td>
+      <td>—</td>
+      <td class="flag">✓</td>
+    </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="footer">
+      LLM Context Optimizer v1.0.0 | Prices based on GPT-4o: $5/1M input tokens<br>
+      Note: Token estimates are approximate. Actual savings may vary by model.
+    </div>
+  </div>
+</body>
+</html>
